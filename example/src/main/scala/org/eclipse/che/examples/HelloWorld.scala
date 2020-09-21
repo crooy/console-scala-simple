@@ -1,23 +1,16 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Red Hat, Inc. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
 package org.eclipse.che.examples
 
-import cats.effect._
+import zio.console._
 
-object HelloWorld extends IOApp {
+object HelloWorld extends zio.App {
 
-  override def run(args: List[String]): IO[ExitCode] = {
-    val che = "Che"
+  def run(args: List[String]) =
+    myAppLogic.exitCode
+
+  val myAppLogic =
     for {
-      greeting <- greet(che)
-      _ <- Console.io.putStrLn(greeting)
-    } yield ExitCode.Success
-  }
-
-  def greet(name: String): IO[String] = {
-    IO.pure(s"Hello $name!")
-  }
-
+      _    <- putStrLn("Hello! What is your name?")
+      name <- getStrLn
+      _    <- putStrLn(s"Hello, ${name}, welcome to ZIO!")
+    } yield ()
 }

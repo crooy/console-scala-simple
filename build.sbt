@@ -6,7 +6,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "console-scala-simple",
-    publish / skip := true,
+    publish / skip := true
   )
   .aggregate(example)
 
@@ -17,9 +17,9 @@ lazy val example = project
     name := "example",
     Compile / mainClass := Some("org.eclipse.che.examples.HelloWorld"),
     libraryDependencies ++= List(
-      Dependencies.console4cats,
-      Dependencies.scalaTest % Test,
-    ),
+      Dependencies.zio,
+      Dependencies.scalaTest % Test
+    )
   )
 
 lazy val commonSettings: List[Def.Setting[_]] = List(
@@ -28,12 +28,12 @@ lazy val commonSettings: List[Def.Setting[_]] = List(
   licenses := List("MIT" -> url("https://opensource.org/licenses/MIT")),
   developers := List(
     Developer(
-      "john.doe",
-      "John Doe",
-      "john.doe@redhat.com",
-      url("https://www.eclipse.org/che/"),
-    ),
-  ),
+      "Ronald Crooy",
+      "Ronald Crooy",
+      "r.a.crooy@gmail.com",
+      url("https://www.crooy.com")
+    )
+  )
 )
 
 //addCommandAlias("ci", "; check; publishLocal")
